@@ -1,69 +1,86 @@
-import Image from "next/image";
+import CTASection from "@/components/CTASection";
+import ServicesSection from "@/components/ServicesSection";
+import AboutSection from "@/components/AboutSection";
+import ServiceAreasPreview from "@/components/ServiceAreasPreview";
+import WhyChooseUsSection from "@/components/WhyChooseUsSection";
+import ReviewsSection from "@/components/ReviewsSection";
+import FullWidthMap from "@/components/FullWidthMap";
+import FinalCTASection from "@/components/FinalCTASection";
+import { business } from "@/data/siteData";
+import { pageMetadata } from "@/lib/seo";
+
+// The home page targets the brand plus core services; /locksmith-twin-falls-id
+// targets "locksmith Twin Falls" so the two don't compete (PROJECT.md).
+export const metadata = pageMetadata({
+  title: "A & B Locksmiths LLC | Lockouts & Lock Changes in Twin Falls, ID",
+  description: `Local locksmith in Twin Falls, ID for car lockouts, house lockouts, rekeying and complete lock changes. Serving the Magic Valley. Call ${business.phone}.`,
+  path: "/",
+});
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <main className="flex-1">
+      {/* Hero Section */}
+      <section className="relative w-full h-[60vh] md:h-[75vh] lg:h-[85vh] overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/hero.jpg"
+          alt="Professional locksmith services in Twin Falls, ID"
+          className="absolute inset-0 w-full h-full object-cover object-left -z-10"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+        {/* Light Black Overlay */}
+        <div className="absolute inset-0 bg-black/40 z-0"></div>
+
+        <div className="relative z-10 flex flex-col items-center justify-center w-full h-full px-4 text-center">
+          <h1 className="text-white text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6 drop-shadow-lg">
+            A &amp; B Locksmiths LLC
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-white/95 text-base sm:text-xl md:text-2xl lg:text-3xl font-medium mb-6 sm:mb-10 max-w-4xl drop-shadow-md">
+            Your trusted local locksmith for car lockouts, house lockouts, rekeying &amp; lock changes in Twin Falls and surrounding areas.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href={`tel:${business.phoneRaw}`}
+            className="inline-flex items-center gap-2 sm:gap-3 px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-4 lg:px-12 lg:py-5 rounded-full text-sm sm:text-base md:text-lg lg:text-xl font-bold tracking-wide transition-all duration-300 hover:scale-105 active:scale-[0.97] bg-slate-900 text-white shadow-xl hover:bg-slate-800 border border-white/10"
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
+            <svg
+              className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"
+              />
+            </svg>
+            CALL US NOW
           </a>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* CTA Banner */}
+      <CTASection />
+
+      {/* Our Services */}
+      <ServicesSection />
+
+      {/* About Us */}
+      <AboutSection />
+
+      {/* Service Areas */}
+      <ServiceAreasPreview />
+      {/* Why Choose Us */}
+      <WhyChooseUsSection />
+      {/* Google Reviews (in place of the template's "View Our Work" gallery) */}
+      <ReviewsSection />
+
+      {/* Full Width Map */}
+      <FullWidthMap />
+
+      {/* Final Overlapping CTA */}
+      <FinalCTASection />
+    </main>
   );
 }

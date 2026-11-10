@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { services, business } from "@/data/siteData";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -134,6 +135,37 @@ export default function ServicePageTemplate({ slug }: ServicePageProps) {
 					</div>
 				</div>
 			</section>
+
+			{/* Job photos. With a single photo, the details block above already shows it. */}
+			{service.photos.length > 1 && (
+				<section className="py-20 px-6 bg-white">
+					<div className="max-w-7xl mx-auto">
+						<h2
+							className="text-3xl sm:text-4xl font-bold mb-12 text-center"
+							style={{ color: "var(--color-secondary)" }}
+						>
+							Our {service.title} Work
+						</h2>
+						<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+							{service.photos.map((photo, i) => (
+								<div
+									key={photo}
+									className="relative aspect-square rounded-2xl overflow-hidden bg-gray-100"
+									style={{ boxShadow: "var(--shadow-md)" }}
+								>
+									<Image
+										src={photo}
+										alt={`${service.title} by ${business.name}, photo ${i + 1}`}
+										fill
+										sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
+										className="object-cover transition-transform duration-500 hover:scale-105"
+									/>
+								</div>
+							))}
+						</div>
+					</div>
+				</section>
+			)}
 
 			{/* 3. Subservices Grid */}
 			<section ref={subservicesRef} className="py-20 px-6 bg-gray-50">

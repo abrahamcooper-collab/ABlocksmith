@@ -31,14 +31,52 @@ const SERVICE_IMAGES: Record<string, string> = {
 	"emergency-locksmith": "/images/services/emergency.jpg",
 };
 
-export const services = serviceContent.map((s) => ({
-	...s,
-	title: s.name,
-	slug: `/${s.slug}`,
-	image: SERVICE_IMAGES[s.slug],
-	shortDesc: s.summary,
-	features: s.included,
-}));
+/** The client's own job photos in public/img, keyed by service slug. The first
+ * photo becomes the service's cover image, replacing the stock one above.
+ * Most "WhatsApp Image …" files are lower-quality copies of the IMG_ photos, so
+ * only the IMG_ originals are listed, plus the one WhatsApp photo with no original. */
+const SERVICE_PHOTOS: Record<string, readonly string[]> = {
+	"car-lockout-service": [
+		"IMG_5863.jpeg",
+		"IMG_5866.jpeg",
+		"IMG_5867.jpeg",
+		"IMG_5868.jpeg",
+		"IMG_5869.jpeg",
+		"WhatsApp Image 2026-11-10 at 7.31.50 PM.jpeg",
+	],
+	"house-lockout-service": ["IMG_5864.jpeg"],
+	"rekey-locks": ["IMG_5862.jpeg"],
+	"residential-locksmith": ["IMG_5865.jpeg"],
+};
+
+// File names contain spaces, so the URLs are encoded once here for every consumer
+// (next/image src and CSS url()).
+const photoUrl = (file: string) => encodeURI(`/img/${file}`);
+
+/** The client's non-service photos in public/img, used on the home and About pages. */
+export const sitePhotos = {
+	/** Owner beside the branded company truck (480×640). */
+	ownerWithTruck: photoUrl("IMG_5870.jpeg"),
+	/** Owner and truck outside a house; portrait once EXIF rotation is applied. */
+	ownerOnSite: photoUrl("IMG_6765.jpeg"),
+	/** BBB Certificate of Accreditation, accredited since 11/06/2026. */
+	bbbCertificate: photoUrl(
+		"21D5C52B-8E4B-4316-A983-9CFF3324ECA0remotee8ecdfd69bb7548848a5ed20c359cfc7899dc8c8-1-original.jpeg",
+	),
+} as const;
+
+export const services = serviceContent.map((s) => {
+	const photos = (SERVICE_PHOTOS[s.slug] ?? []).map(photoUrl);
+	return {
+		...s,
+		title: s.name,
+		slug: `/${s.slug}`,
+		image: photos[0] ?? SERVICE_IMAGES[s.slug],
+		photos,
+		shortDesc: s.summary,
+		features: s.included,
+	};
+});
 
 /* ─── Service Areas (Separate Pages) ─── */
 const AREA_IMAGES = [

@@ -2,6 +2,7 @@
 
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import Image from "next/image";
+import { business, sitePhotos } from "@/data/siteData";
 /* ─── Features Data ─── */
 const leftFeatures = [
   {
@@ -169,7 +170,13 @@ export default function WhyChooseUsSection() {
               className="relative rounded-2xl overflow-hidden aspect-[3/4] w-full max-w-[320px]"
               style={{ boxShadow: "var(--shadow-lg)" }}
             >
-              <Image src="/images/door.jpg" alt="Front door with lock" fill className="object-cover"></Image>
+              <Image
+                src={sitePhotos.ownerOnSite}
+                alt={`${business.name} locksmith with the company truck at a Twin Falls home`}
+                fill
+                sizes="320px"
+                className="object-cover"
+              />
             </div>
           </div>
 

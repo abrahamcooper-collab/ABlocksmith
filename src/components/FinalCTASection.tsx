@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { business } from "@/data/siteData";
+import { business, sitePhotos } from "@/data/siteData";
 import Image from "next/image";
 
 export default function FinalCTASection() {
@@ -16,8 +16,13 @@ export default function FinalCTASection() {
       >
         {/* Background Image / Overlay */}
         <div className="absolute inset-0 bg-gray-900">
-           {/* Replace line below with an actual <Image> if you have a photo of a house */}
-          <Image src="/images/house2.jpg" alt="Home in Twin Falls, ID" fill className="object-cover opacity-60" />
+          <Image
+            src={sitePhotos.finalCtaBackdrop}
+            alt=""
+            fill
+            sizes="(min-width: 1280px) 1280px, 100vw"
+            className="object-cover opacity-60"
+          />
           {/* Dark gradient overlay to make text pop */}
           <div className="absolute inset-0 bg-black/50" />
         </div>

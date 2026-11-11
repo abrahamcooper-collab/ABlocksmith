@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { services, business } from "@/data/siteData";
+import { services, business, sitePhotos } from "@/data/siteData";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 import PageHeader from "./PageHeader";
@@ -38,7 +38,7 @@ export default function ServicePageTemplate({ slug }: ServicePageProps) {
 			<PageHeader
 				title={service.h1}
 				subtitle={service.tagline}
-				bgImage={service.image ?? "/images/door.jpg"}
+				bgImage={service.image ?? sitePhotos.serviceFallbackHeader}
 			/>
 
 			{/* 2. Details Component (Image Left, Text Right) */}

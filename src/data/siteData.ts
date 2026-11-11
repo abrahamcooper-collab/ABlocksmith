@@ -21,15 +21,9 @@ export const business = {
 };
 
 /* ─── Services (Separate Pages) ─── */
-// Stock covers for services without client photos (see SERVICE_PHOTOS below).
-const SERVICE_IMAGES: Record<string, string> = {
-	"lock-change-service": "/images/services/lock-change.jpg",
-	"commercial-locksmith": "/images/services/commercial.jpg",
-	"emergency-locksmith": "/images/services/emergency.jpg",
-};
-
 /** The client's own job photos in public/img, keyed by service slug. The first
- * photo becomes the service's cover image, replacing the stock one above.
+ * photo becomes the service's cover image. A service with no photos shows the
+ * template's gradient + icon placeholder instead (no stock photos on service cards).
  * Most "WhatsApp Image …" files are lower-quality copies of the IMG_ photos, so
  * only the IMG_ originals are listed, plus the one WhatsApp photo with no original. */
 const SERVICE_PHOTOS: Record<string, readonly string[]> = {
@@ -44,18 +38,35 @@ const SERVICE_PHOTOS: Record<string, readonly string[]> = {
 	"house-lockout-service": ["IMG_5864.jpeg"],
 	"rekey-locks": ["IMG_5862.jpeg"],
 	"residential-locksmith": ["IMG_5865.jpeg"],
+	"emergency-locksmith": ["IMG_5867.jpeg"],
 };
 
 // File names contain spaces, so the URLs are encoded once here for every consumer
 // (next/image src and CSS url()).
 const photoUrl = (file: string) => encodeURI(`/img/${file}`);
 
-/** The client's non-service photos in public/img, used on the home and About pages. */
+/** The client's own photos used outside the service pages. The home page shows
+ * only client photos, so its sections read their images from here. */
 export const sitePhotos = {
 	/** Owner beside the branded company truck (480×640). */
 	ownerWithTruck: photoUrl("IMG_5870.jpeg"),
-	/** Owner and truck outside a house; portrait once EXIF rotation is applied. */
+	/** Owner and truck outside a house (5712×4284, portrait once EXIF rotation is
+	 * applied). The only high-resolution photo, so it's the home page hero. */
 	ownerOnSite: photoUrl("IMG_6765.jpeg"),
+	/** Why Choose Us center image (768×1024 portrait). */
+	whyChooseUs: photoUrl("IMG_5866.jpeg"),
+	/** Service Areas section background, under a dark overlay. */
+	serviceAreasBackdrop: photoUrl("IMG_5869.jpeg"),
+	/** Closing call-to-action background, under a dark overlay. */
+	finalCtaBackdrop: photoUrl("WhatsApp Image 2026-11-10 at 7.31.50 PM.jpeg"),
+	/** Page header photos. The site uses no stock photos, only the client's own. */
+	aboutHeader: photoUrl("IMG_5865.jpeg"),
+	contactHeader: photoUrl("IMG_5870.jpeg"),
+	/** IMG_5868 is the only job photo not already on the services page's cards. */
+	servicesHeader: photoUrl("IMG_5868.jpeg"),
+	serviceAreasHeader: photoUrl("IMG_6765.jpeg"),
+	/** Header for service pages that have no photos of their own (mobile key-cutting bench). */
+	serviceFallbackHeader: photoUrl("IMG_5862.jpeg"),
 	/** "We proudly support our United States veterans!" graphic (590×359, white background). */
 	veteransSupport: photoUrl("veteran.jpeg"),
 	/** BBB Certificate of Accreditation, accredited since 11/06/2026. */
@@ -70,7 +81,7 @@ export const services = serviceContent.map((s) => {
 		...s,
 		title: s.name,
 		slug: `/${s.slug}`,
-		image: photos[0] ?? SERVICE_IMAGES[s.slug],
+		image: photos[0] as string | undefined,
 		photos,
 		shortDesc: s.summary,
 		features: s.included,
@@ -78,47 +89,55 @@ export const services = serviceContent.map((s) => {
 });
 
 /* ─── Service Areas (Separate Pages) ─── */
-// Stock header photos, rotated so neighbouring area pages look different.
-const AREA_IMAGES = [
-	"/images/hero.jpg",
-	"/images/houses-1.jpg",
-	"/images/houses-2.jpg",
-	"/images/house2.jpg",
-	"/images/door.jpg",
-	"/images/services/residential.jpg",
-	"/images/services/rekey.jpg",
-	"/images/services/house-lockout.jpg",
-	"/images/services/car-lockout.jpg",
+/** Client job photos for the area pages, in "Recent Work" order. Each original
+ * has a WhatsApp copy in public/img/more images; the strip shows the copies so
+ * those files are used too. */
+const AREA_JOB_PHOTOS: readonly { original: string; copy: string }[] = [
+	{ original: "IMG_5863.jpeg", copy: "WhatsApp Image 2026-11-10 at 7.25.19 PM (1).jpeg" },
+	{ original: "IMG_5864.jpeg", copy: "WhatsApp Image 2026-11-10 at 7.25.20 PM.jpeg" },
+	{ original: "IMG_5862.jpeg", copy: "WhatsApp Image 2026-11-10 at 7.25.19 PM.jpeg" },
+	{ original: "IMG_5866.jpeg", copy: "WhatsApp Image 2026-11-10 at 7.25.21 PM.jpeg" },
+	{ original: "IMG_5865.jpeg", copy: "WhatsApp Image 2026-11-10 at 7.25.20 PM (1).jpeg" },
+	{ original: "IMG_5870.jpeg", copy: "WhatsApp Image 2026-11-10 at 7.25.23 PM.jpeg" },
+	{ original: "IMG_5867.jpeg", copy: "WhatsApp Image 2026-11-10 at 7.25.22 PM.jpeg" },
+	{ original: "IMG_5868.jpeg", copy: "WhatsApp Image 2026-11-10 at 7.25.22 PM (1).jpeg" },
+	{ original: "IMG_5869.jpeg", copy: "WhatsApp Image 2026-11-10 at 7.25.22 PM (2).jpeg" },
 ];
 
-/** Client job photos for the area pages' "Recent Work" strip. These are the
- * WhatsApp copies of the IMG_ photos on the service pages. */
-const RECENT_WORK_PHOTOS = [
-	"WhatsApp Image 2026-11-10 at 7.25.19 PM (1).jpeg",
-	"WhatsApp Image 2026-11-10 at 7.25.20 PM.jpeg",
-	"WhatsApp Image 2026-11-10 at 7.25.19 PM.jpeg",
-	"WhatsApp Image 2026-11-10 at 7.25.21 PM.jpeg",
-	"WhatsApp Image 2026-11-10 at 7.25.20 PM (1).jpeg",
-	"WhatsApp Image 2026-11-10 at 7.25.23 PM.jpeg",
-	"WhatsApp Image 2026-11-10 at 7.25.22 PM.jpeg",
-	"WhatsApp Image 2026-11-10 at 7.25.22 PM (1).jpeg",
-	"WhatsApp Image 2026-11-10 at 7.25.22 PM (2).jpeg",
-].map((file) => photoUrl(`more images/${file}`));
+/** Header photo rotation for the area pages (client photos only). */
+const AREA_HEADER_ROTATION = [
+	"IMG_6765.jpeg",
+	"WhatsApp Image 2026-11-10 at 7.31.50 PM.jpeg",
+	...AREA_JOB_PHOTOS.map((p) => p.original),
+];
 
 const RECENT_WORK_PER_AREA = 3;
+
+function areaPhotos(index: number) {
+	// Consecutive, non-overlapping slices, so each page shows 3 different photos.
+	const strip = Array.from(
+		{ length: RECENT_WORK_PER_AREA },
+		(_, k) => AREA_JOB_PHOTOS[(index * RECENT_WORK_PER_AREA + k) % AREA_JOB_PHOTOS.length],
+	);
+	// The header must not repeat a photo that's in this page's strip.
+	const inStrip = new Set(strip.map((p) => p.original));
+	const header = Array.from(
+		{ length: AREA_HEADER_ROTATION.length },
+		(_, k) => AREA_HEADER_ROTATION[(index + k) % AREA_HEADER_ROTATION.length],
+	).find((file) => !inStrip.has(file));
+	if (!header) throw new Error("Area header rotation has no photo outside the strip");
+	return {
+		image: photoUrl(header),
+		recentWork: strip.map((p) => photoUrl(`more images/${p.copy}`)),
+	};
+}
 
 export const serviceAreas = serviceAreaPages.map((a, index) => ({
 	...a,
 	city: a.town,
 	slug: `/${a.slug}`,
 	state: "ID",
-	image: AREA_IMAGES[index % AREA_IMAGES.length],
-	// Consecutive, non-overlapping slices, so each page shows 3 different photos.
-	recentWork: Array.from(
-		{ length: RECENT_WORK_PER_AREA },
-		(_, k) =>
-			RECENT_WORK_PHOTOS[(index * RECENT_WORK_PER_AREA + k) % RECENT_WORK_PHOTOS.length],
-	),
+	...areaPhotos(index),
 }));
 
 // Strictly for SEO keyword placement on the site without separate pages

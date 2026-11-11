@@ -171,8 +171,8 @@ export default function WhyChooseUsSection() {
               style={{ boxShadow: "var(--shadow-lg)" }}
             >
               <Image
-                src={sitePhotos.ownerOnSite}
-                alt={`${business.name} locksmith with the company truck at a Twin Falls home`}
+                src={sitePhotos.whyChooseUs}
+                alt={`${business.name} locksmith after opening a locked car`}
                 fill
                 sizes="320px"
                 className="object-cover"

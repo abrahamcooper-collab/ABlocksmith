@@ -1,6 +1,7 @@
 import { pageMetadata } from "@/lib/seo";
 import ServicesSection from "@/components/ServicesSection";
 import PageHeader from "@/components/PageHeader";
+import { sitePhotos } from "@/data/siteData";
 
 export const metadata = pageMetadata({
 	title: "Locksmith Services in Twin Falls, ID | A & B Locksmiths LLC",
@@ -15,7 +16,7 @@ export default function ServicesPage() {
 			<PageHeader
 				title="Locksmith Services in Twin Falls, ID"
 				subtitle="Lockouts, rekeying and lock changes for every home, vehicle and business."
-				bgImage="/images/house2.jpg"
+				bgImage={sitePhotos.servicesHeader}
 			/>
 
 			<section

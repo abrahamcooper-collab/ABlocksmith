@@ -7,7 +7,8 @@ import WhyChooseUsSection from "@/components/WhyChooseUsSection";
 import ReviewsSection from "@/components/ReviewsSection";
 import FullWidthMap from "@/components/FullWidthMap";
 import FinalCTASection from "@/components/FinalCTASection";
-import { business } from "@/data/siteData";
+import Image from "next/image";
+import { business, sitePhotos } from "@/data/siteData";
 import { pageMetadata } from "@/lib/seo";
 
 // The home page targets the brand plus core services; /locksmith-twin-falls-id
@@ -23,11 +24,14 @@ export default function Home() {
     <main className="flex-1">
       {/* Hero Section */}
       <section className="relative w-full h-[60vh] md:h-[75vh] lg:h-[85vh] overflow-hidden">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/images/hero.jpg"
-          alt="Professional locksmith services in Twin Falls, ID"
-          className="absolute inset-0 w-full h-full object-cover object-left -z-10"
+        {/* next/image: the source photo is 5.2 MB, so it must be resized, not served as-is. */}
+        <Image
+          src={sitePhotos.ownerOnSite}
+          alt={`${business.name} locksmith with the company truck in Twin Falls, ID`}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[center_36%] -z-10"
         />
         {/* Light Black Overlay */}
         <div className="absolute inset-0 bg-black/40 z-0"></div>

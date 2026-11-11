@@ -1,7 +1,7 @@
 import { pageMetadata } from "@/lib/seo";
 import { mapEmbedUrl } from "@/config/business";
 import PageHeader from "@/components/PageHeader";
-import { business, services } from "@/data/siteData";
+import { business, services, sitePhotos } from "@/data/siteData";
 
 export const metadata = pageMetadata({
 	title: "Contact Us | A & B Locksmiths LLC | Twin Falls, ID",
@@ -16,7 +16,7 @@ export default function ContactPage() {
 				title="Contact Us"
 				subtitle="Locked out or need new locks? Call us or send a message"
 				breadcrumb="Contact"
-				bgImage="/images/houses-1.jpg"
+				bgImage={sitePhotos.contactHeader}
 			/>
 
 			<section className="py-20 px-6 bg-white">

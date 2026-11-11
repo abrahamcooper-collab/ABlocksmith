@@ -22,7 +22,8 @@ export const metadata: Metadata = {
   },
   description:
     "A & B Locksmiths LLC is a local locksmith in Twin Falls, ID offering car lockouts, house lockouts, rekeying and lock changes across the Magic Valley.",
-  icons: { icon: "/logo.jpeg", apple: "/logo.jpeg" },
+  // Icons come from the file conventions in src/app (favicon.ico, icon.png,
+  // apple-icon.png), all generated from public/logo.jpeg.
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

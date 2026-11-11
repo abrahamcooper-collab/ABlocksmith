@@ -1,7 +1,7 @@
 import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { MapPin } from "lucide-react";
-import { serviceAreas, services, seoAreas } from "@/data/siteData";
+import { serviceAreas, services, seoAreas, sitePhotos } from "@/data/siteData";
 import PageHeader from "@/components/PageHeader";
 
 export const metadata = pageMetadata({
@@ -17,7 +17,7 @@ export default function ServiceAreasPage() {
 			<PageHeader
 				title="Locksmith Service Areas Near Twin Falls, ID"
 				subtitle="Proudly serving communities across Twin Falls and Jerome Counties"
-				bgImage="/images/house2.jpg"
+				bgImage={sitePhotos.serviceAreasHeader}
 			/>
 
 			<section className="py-20 px-6 bg-white">

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { serviceAreas, business } from "@/data/siteData";
+import { serviceAreas, business, sitePhotos } from "@/data/siteData";
 import Image from "next/image";
 
 export default function ServiceAreasPreview() {
@@ -15,8 +15,13 @@ export default function ServiceAreasPreview() {
     >
       {/* Background image placeholder */}
       <div className="absolute inset-0 bg-gray-800">
-        {/* Replace this div with an <Image> tag when you have a real photo */}
-        <Image src="/images/houses-1.jpg" alt="Homes in the Twin Falls area" fill className="object-cover"></Image>
+        <Image
+          src={sitePhotos.serviceAreasBackdrop}
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
       </div>
 
       {/* Dark overlay */}

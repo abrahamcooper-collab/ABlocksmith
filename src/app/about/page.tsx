@@ -26,7 +26,7 @@ export default function AboutPage() {
 				title="About Us"
 				subtitle="Get to know the team behind A & B Locksmiths LLC"
 				breadcrumb="About"
-				bgImage="/images/houses-2.jpg"
+				bgImage={sitePhotos.aboutHeader}
 			/>
 
 			<section className="py-20 px-6 bg-white">

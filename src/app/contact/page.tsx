@@ -210,7 +210,7 @@ export default function ContactPage() {
 
 								</div>
 
-								{/* Map placeholder */}
+								{/* Map */}
 								<div className="mt-8 rounded-xl overflow-hidden aspect-[4/3] bg-gray-200 flex items-center justify-center">
 									<iframe
 										src={mapEmbedUrl(`${business.name}, ${business.address}`)}

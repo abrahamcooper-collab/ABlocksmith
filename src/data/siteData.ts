@@ -22,8 +22,9 @@ export const business = {
 
 /* ─── Services (Separate Pages) ─── */
 /** The client's own job photos in public/img, keyed by service slug. The first
- * photo becomes the service's cover image. A service with no photos shows the
- * template's gradient + icon placeholder instead (no stock photos on service cards).
+ * photo becomes the service's cover image. Every service has at least one client
+ * photo; there are no lock-change or commercial job photos yet, so those two use
+ * the closest real ones (hands working a lock; the branded company truck).
  * Most "WhatsApp Image …" files are lower-quality copies of the IMG_ photos, so
  * only the IMG_ originals are listed, plus the one WhatsApp photo with no original. */
 const SERVICE_PHOTOS: Record<string, readonly string[]> = {
@@ -39,6 +40,8 @@ const SERVICE_PHOTOS: Record<string, readonly string[]> = {
 	"rekey-locks": ["IMG_5862.jpeg"],
 	"residential-locksmith": ["IMG_5865.jpeg"],
 	"emergency-locksmith": ["IMG_5867.jpeg"],
+	"lock-change-service": ["IMG_5868.jpeg"],
+	"commercial-locksmith": ["IMG_5870.jpeg"],
 };
 
 // File names contain spaces, so the URLs are encoded once here for every consumer
@@ -62,8 +65,8 @@ export const sitePhotos = {
 	/** Page header photos. The site uses no stock photos, only the client's own. */
 	aboutHeader: photoUrl("IMG_5865.jpeg"),
 	contactHeader: photoUrl("IMG_5870.jpeg"),
-	/** IMG_5868 is the only job photo not already on the services page's cards. */
-	servicesHeader: photoUrl("IMG_5868.jpeg"),
+	/** Not one of the service card photos, so the services page shows no repeats. */
+	servicesHeader: photoUrl("IMG_6765.jpeg"),
 	serviceAreasHeader: photoUrl("IMG_6765.jpeg"),
 	/** Header for service pages that have no photos of their own (mobile key-cutting bench). */
 	serviceFallbackHeader: photoUrl("IMG_5862.jpeg"),

@@ -21,12 +21,9 @@ export const business = {
 };
 
 /* ─── Services (Separate Pages) ─── */
+// Stock covers for services without client photos (see SERVICE_PHOTOS below).
 const SERVICE_IMAGES: Record<string, string> = {
-	"car-lockout-service": "/images/services/car-lockout.jpg",
-	"house-lockout-service": "/images/services/house-lockout.jpg",
 	"lock-change-service": "/images/services/lock-change.jpg",
-	"rekey-locks": "/images/services/rekey.jpg",
-	"residential-locksmith": "/images/services/residential.jpg",
 	"commercial-locksmith": "/images/services/commercial.jpg",
 	"emergency-locksmith": "/images/services/emergency.jpg",
 };
@@ -59,6 +56,8 @@ export const sitePhotos = {
 	ownerWithTruck: photoUrl("IMG_5870.jpeg"),
 	/** Owner and truck outside a house; portrait once EXIF rotation is applied. */
 	ownerOnSite: photoUrl("IMG_6765.jpeg"),
+	/** "We proudly support our United States veterans!" graphic (590×359, white background). */
+	veteransSupport: photoUrl("veteran.jpeg"),
 	/** BBB Certificate of Accreditation, accredited since 11/06/2026. */
 	bbbCertificate: photoUrl(
 		"21D5C52B-8E4B-4316-A983-9CFF3324ECA0remotee8ecdfd69bb7548848a5ed20c359cfc7899dc8c8-1-original.jpeg",
@@ -79,13 +78,34 @@ export const services = serviceContent.map((s) => {
 });
 
 /* ─── Service Areas (Separate Pages) ─── */
+// Stock header photos, rotated so neighbouring area pages look different.
 const AREA_IMAGES = [
 	"/images/hero.jpg",
 	"/images/houses-1.jpg",
 	"/images/houses-2.jpg",
 	"/images/house2.jpg",
 	"/images/door.jpg",
+	"/images/services/residential.jpg",
+	"/images/services/rekey.jpg",
+	"/images/services/house-lockout.jpg",
+	"/images/services/car-lockout.jpg",
 ];
+
+/** Client job photos for the area pages' "Recent Work" strip. These are the
+ * WhatsApp copies of the IMG_ photos on the service pages. */
+const RECENT_WORK_PHOTOS = [
+	"WhatsApp Image 2026-11-10 at 7.25.19 PM (1).jpeg",
+	"WhatsApp Image 2026-11-10 at 7.25.20 PM.jpeg",
+	"WhatsApp Image 2026-11-10 at 7.25.19 PM.jpeg",
+	"WhatsApp Image 2026-11-10 at 7.25.21 PM.jpeg",
+	"WhatsApp Image 2026-11-10 at 7.25.20 PM (1).jpeg",
+	"WhatsApp Image 2026-11-10 at 7.25.23 PM.jpeg",
+	"WhatsApp Image 2026-11-10 at 7.25.22 PM.jpeg",
+	"WhatsApp Image 2026-11-10 at 7.25.22 PM (1).jpeg",
+	"WhatsApp Image 2026-11-10 at 7.25.22 PM (2).jpeg",
+].map((file) => photoUrl(`more images/${file}`));
+
+const RECENT_WORK_PER_AREA = 3;
 
 export const serviceAreas = serviceAreaPages.map((a, index) => ({
 	...a,
@@ -93,6 +113,12 @@ export const serviceAreas = serviceAreaPages.map((a, index) => ({
 	slug: `/${a.slug}`,
 	state: "ID",
 	image: AREA_IMAGES[index % AREA_IMAGES.length],
+	// Consecutive, non-overlapping slices, so each page shows 3 different photos.
+	recentWork: Array.from(
+		{ length: RECENT_WORK_PER_AREA },
+		(_, k) =>
+			RECENT_WORK_PHOTOS[(index * RECENT_WORK_PER_AREA + k) % RECENT_WORK_PHOTOS.length],
+	),
 }));
 
 // Strictly for SEO keyword placement on the site without separate pages

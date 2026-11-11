@@ -9,6 +9,7 @@ import {
 	Home,
 } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
+import BbbAccreditationSection from "@/components/BbbAccreditationSection";
 import Image from "next/image";
 
 export const metadata = pageMetadata({
@@ -143,47 +144,19 @@ export default function AboutPage() {
 						</div>
 					</div>
 
-					{/* BBB accreditation */}
-					<div className="mt-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-						<div>
-							<span
-								className="text-sm font-bold tracking-widest uppercase mb-3 block"
-								style={{ color: "var(--color-primary)" }}
-							>
-								Accredited Business
-							</span>
-							<h2
-								className="text-3xl font-bold mb-6"
-								style={{ color: "var(--color-secondary)" }}
-							>
-								BBB Accredited Locksmith
-							</h2>
-							<div
-								className="w-16 h-1 rounded-full mb-6"
-								style={{ backgroundColor: "var(--color-accent)" }}
-							/>
-							<p className="text-gray-600 leading-relaxed">
-								{business.name} is a Better Business Bureau Accredited
-								Business. We&apos;ve committed to the BBB Standards for Trust:
-								advertising honestly, being transparent, keeping our promises
-								and responding to every customer.
-							</p>
-						</div>
-						<div
-							className="relative rounded-2xl overflow-hidden aspect-[1217/939] bg-white"
-							style={{ boxShadow: "var(--shadow-lg)" }}
-						>
-							<Image
-								src={sitePhotos.bbbCertificate}
-								alt={`BBB Certificate of Accreditation for ${business.name}`}
-								fill
-								sizes="(min-width: 1024px) 480px, 100vw"
-								className="object-contain"
-							/>
-						</div>
+					<div className="mt-16 flex justify-center">
+						<Image
+							src={sitePhotos.veteransSupport}
+							alt="We proudly support our United States veterans"
+							width={590}
+							height={359}
+							className="w-full max-w-md h-auto"
+						/>
 					</div>
 				</div>
 			</section>
+
+			<BbbAccreditationSection />
 		</main>
 	);
 }

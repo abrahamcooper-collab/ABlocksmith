@@ -1,6 +1,7 @@
 import CTASection from "@/components/CTASection";
 import ServicesSection from "@/components/ServicesSection";
 import AboutSection from "@/components/AboutSection";
+import BbbAccreditationSection from "@/components/BbbAccreditationSection";
 import ServiceAreasPreview from "@/components/ServiceAreasPreview";
 import WhyChooseUsSection from "@/components/WhyChooseUsSection";
 import ReviewsSection from "@/components/ReviewsSection";
@@ -68,6 +69,9 @@ export default function Home() {
 
       {/* About Us */}
       <AboutSection />
+
+      {/* BBB Accreditation */}
+      <BbbAccreditationSection />
 
       {/* Service Areas */}
       <ServiceAreasPreview />

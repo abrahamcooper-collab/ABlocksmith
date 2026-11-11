@@ -1,4 +1,5 @@
 import { ElementType } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { serviceAreas, services, business } from "@/data/siteData";
 import CTASection from "./CTASection";
@@ -100,6 +101,37 @@ export default function AreaPage({ area }: { area: (typeof serviceAreas)[number]
 								</div>
 							);
 						})}
+					</div>
+				</div>
+			</section>
+
+			<section className="py-20 px-6 bg-white">
+				<div className="max-w-5xl mx-auto">
+					<h2
+						className="text-3xl font-bold mb-4 text-center"
+						style={{ color: "var(--color-secondary)" }}
+					>
+						Recent Locksmith Work
+					</h2>
+					<p className="text-gray-600 text-center mb-10">
+						A few recent jobs by {business.name} around the Magic Valley.
+					</p>
+					<div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+						{area.recentWork.map((photo, i) => (
+							<div
+								key={photo}
+								className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100"
+								style={{ boxShadow: "var(--shadow-md)" }}
+							>
+								<Image
+									src={photo}
+									alt={`Recent locksmith job by ${business.name}, photo ${i + 1}`}
+									fill
+									sizes="(min-width: 640px) 33vw, 100vw"
+									className="object-cover"
+								/>
+							</div>
+						))}
 					</div>
 				</div>
 			</section>
